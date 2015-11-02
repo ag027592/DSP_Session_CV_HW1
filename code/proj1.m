@@ -38,6 +38,19 @@ filter = fspecial('Gaussian', cutoff_frequency*4+1, cutoff_frequency);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %low_frequencies=
+blur_filter = [1 1 1; 1 1 1; 1 1 1];
+blur_filter = blur_filter / sum(sum(blur_filter)); %making the filter sum to 1
+%image1_blur
+%blur_image1 = my_imfilter(image1, blur_filter);
+%low_frequencies=my_imfilter(image1, blur_filter);
+low_frequencies=my_imfilter(image1, filter);
+%image2_blur
+blur_image2 = my_imfilter(image2, filter);
+
+%large_1d_blur_filter = fspecial('Gaussian', [25 1], 10);
+%large_blur_image = my_imfilter(image1, large_1d_blur_filter);
+%low_frequencies = my_imfilter(large_blur_image, large_1d_blur_filter'); 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Remove the low frequencies from image2. The easiest way to do this is to
@@ -46,12 +59,18 @@ filter = fspecial('Gaussian', cutoff_frequency*4+1, cutoff_frequency);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %high_frequencies=
+%high_pass_image2=image2-blur_image2;
+high_frequencies=image2-blur_image2;
+%laplacian_filter = [0 1 0; 1 -4 1; 0 1 0];
+%laplacian_image = my_imfilter(image2, laplacian_filter);
+%high_frequencies= my_imfilter(image2, laplacian_filter);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Combine the high frequencies and low frequencies
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %hybrid_image=
+hybrid_image=(low_frequencies+high_frequencies);
 
 %% Visualize and save outputs
 figure(1); imshow(low_frequencies);
