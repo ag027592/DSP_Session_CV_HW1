@@ -10,8 +10,9 @@ close all; % closes all figures
 
 %% Setup
 % read images and convert to floating point format
-image1 = im2single(imread('../data/dog.bmp'));
-image2 = im2single(imread('../data/cat.bmp'));
+image1 = im2single(imread('../data/dog.bmp'));%low frequency
+image2 = im2single(imread('../data/cat.bmp'));%high frequency
+
 
 % Several additional test cases are provided for you, but feel free to make
 % your own (you'll need to align the images in a photo editor such as
@@ -77,7 +78,7 @@ figure(1); imshow(low_frequencies);
 figure(2); imshow(high_frequencies + 0.5);
 vis = vis_hybrid_image(hybrid_image);
 figure(3); imshow(vis);
-imwrite(low_frequencies, 'low_frequencies.jpg', 'quality', 95);
-imwrite(high_frequencies + 0.5, 'high_frequencies.jpg', 'quality', 95);
-imwrite(hybrid_image, 'hybrid_image.jpg', 'quality', 95);
-imwrite(vis, 'hybrid_image_scales.jpg', 'quality', 95);
+imwrite(low_frequencies, 'low_frequencies_dog.jpg', 'quality', 95);
+imwrite(high_frequencies + 0.5, 'high_frequencies_cat.jpg', 'quality', 95);
+imwrite(hybrid_image, 'hybrid_image_cd.jpg', 'quality', 95);
+imwrite(vis, 'hybrid_image_scales_cd.jpg', 'quality', 95);

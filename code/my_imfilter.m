@@ -1,11 +1,11 @@
 
 function output = my_imfilter(image, filter)
-
+%Elapsed time is 1.170535 seconds.
 filter_rows = size(filter, 1);
 filter_cols = size(filter, 2);
 
-half_filter_rows = floor(filter_rows/2);
-half_filter_cols = floor(filter_cols/2);
+half_filter_rows = floor(filter_rows/2);% half row of filter 
+half_filter_cols = floor(filter_cols/2);% half col of filter
 
 image_rows = size(image, 1);
 image_cols = size(image, 2);
@@ -13,7 +13,7 @@ image_channels = size(image, 3);
 
 image = padarray(image, [half_filter_rows, half_filter_cols]);
 
-output = zeros(image_rows, image_cols, image_channels);
+output = zeros(image_rows, image_cols, image_channels);% initial output size first
 
 for channel = 1:image_channels
     for row = 1:image_rows
@@ -21,9 +21,11 @@ for channel = 1:image_channels
             output(row, col, channel) = sum(sum(image(row:row+filter_rows-1, col:col+filter_cols-1, channel) .* filter));
         end
     end
+
 end
 
 %{
+%Elapsed time is 0.182343 seconds.
 function filtered_image = my_imfilter(image, filter)
 	image_size = size(image);
 	filtered_image = zeros(image_size);                                         % allocate new image

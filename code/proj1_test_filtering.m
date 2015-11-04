@@ -4,7 +4,9 @@
 % all saved and you can include them in your writeup. You can add calls to
 % imfilter() if you want to check that my_imfilter() is doing something
 % similar.
-close all
+close all;
+clc;
+clear;
 
 %% Setup
 test_image = im2single(imread('../data/cat.bmp'));
@@ -15,9 +17,9 @@ imshow(test_image)
 %% Identify filter
 %This filter should do nothing regardless of the padding method you use.
 identity_filter = [0 0 0; 0 1 0; 0 0 0];
-
+tic
 identity_image  = my_imfilter(test_image, identity_filter);
-
+toc
 figure(2); imshow(identity_image);
 imwrite(identity_image, 'identity_image.jpg', 'quality', 95);
 
